@@ -7,6 +7,9 @@
 * flask
 * HTML, CSS
 
+### Demo
+https://safemaps.herokuapp.com/
+
 ### Project Structure
 This project has three major parts :
 1. app.py - This contains Flask APIs that receives movie a review through GUI or API calls, computes the precited value based on our model and returns it.
