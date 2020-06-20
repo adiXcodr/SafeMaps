@@ -22,7 +22,7 @@ hgroup {
 }
 #ini_graph{
 	margin:0 auto !important;
-	/*width:1000px !important;*/
+	width:1000px !important;
 	height:auto;
 }
 h1, h3 { font-weight: 300; }
