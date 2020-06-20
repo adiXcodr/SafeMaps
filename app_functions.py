@@ -5,21 +5,27 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import pytz
 
-def helpGetAllSimplePaths(targetNode,currentPath,usedNodes,adj,answerPaths):
-    lastNode = currentPath[-1]
-    if lastNode == targetNode:
-        answerPaths.append(list(currentPath))
+def getallpath(src,dest,visited,adj,path,final_path):
+    visited[src]=1
+    path.append(src)
+
+    if(src==dest):
+        final_path.append(list(path))
+        pass
     else:
-        for neighbor in adj[lastNode]:
-            if neighbor not in usedNodes:
-                currentPath.append(neighbor)
-                usedNodes.add(neighbor)
-                helpGetAllSimplePaths(targetNode,currentPath,usedNodes,adj,answerPaths)
-                usedNodes.remove(neighbor)
-                currentPath.pop()
-    return answerPaths
-def getAllSimplePaths(originNode, targetNode,adj):
-    return helpGetAllSimplePaths(targetNode,[originNode],set(originNode),adj,list())
+        for neighbours in adj[src]:
+            if visited[neighbours]==0:
+                getallpath(neighbours,dest,visited,adj,path,final_path)
+    path.pop()
+    visited[src]=0
+
+def all_path(src,dest,adj):
+    visited=[0]*11
+    visited[0]=2
+    path=[]
+    final_path=[]
+    getallpath(src, dest, visited, adj, path, final_path)
+    return final_path
 
 def nodeToLocality(nodes):
     localities=dict()
@@ -118,10 +124,7 @@ def createGraph():
         adj=dict()
         for i in range(1,n+1):
             x=list(G.neighbors(i))
-            x = [str(j) for j in x]
-            i=str(i)
             adj[i]=x
-            i=int(i)
         
         return(G,adj)
 
@@ -280,10 +283,17 @@ def listToPath(arr):
 def startProg(G,adj,s,d):
     G,adj=createGraph()
     displayGraph(G)
-    s=str(localityToNode(G,s))
-    d=str(localityToNode(G,d))
-    all_paths=list(getAllSimplePaths(s, d, adj))
-    safest_path,criteria=safestPath(G,all_paths)
+    s=int(localityToNode(G,s))
+    d=int(localityToNode(G,d))
+    if(s==10 and d==1):
+        s,d=d,s
+        all_paths=list(all_path(s, d, adj))
+        safest_path,criteria=safestPath(G,all_paths)
+        safest_path.reverse()
+    else:
+        all_paths=list(all_path(s, d, adj))
+        safest_path,criteria=safestPath(G,all_paths)
+
     safest_path_text=getLocalityList(G,safest_path)
     safest_path_text=listToPath(safest_path_text)
     print('Safest Path is',safest_path_text,'and is based on',criteria)

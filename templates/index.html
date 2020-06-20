@@ -14,14 +14,18 @@
 <body>
   
 	<hgroup>
-		<h2>SAFE MAPS</h2>
+		<a href="https://safemaps.herokuapp.com" class="main_header">SAFE MAPS</a>
 	  </hgroup>
 	<div class="login" id="logbox">
 	  <form action="{{ url_for('connectMap')}}" name="inputform" method="post" id="checkform" enctype="multipart/form-data">
 		
 		<div class="form_left">
 
-				<p>Format: (DPA,TIL,CRL,DIS)</p>
+				<p class="format_docs">Format: (DPA,TIL,CRL,DIS)</p>
+				<p class="format_docs">DPA : Density of people affected</p>
+				<p class="format_docs">TIL : Traffic Intensity Level</p>
+				<p class="format_docs">CRL : Crime Rate Level</p>
+				<p class="format_docs">DIS : Distance between two localities</p>
 				<div  id="ini_graph_container">
 					<img id="ini_graph" src="{{ url_for('static', filename='img/Graph.png') }}">
 				</div>
@@ -29,7 +33,7 @@
 
 				<div class="form-group">
 					<p class="disp_head">Source</p>
-					<select form ="checkform" id="source" autofocus name="source" class="form-control" id="exampleFormControlSelect1">
+					<select form ="checkform" id="source" name="source" class="form-control" id="exampleFormControlSelect1">
 					<option>Tezu</option>
 					<option>Paruwa</option>
 					<option>Mission</option>
@@ -45,7 +49,7 @@
 
 				<div class="form-group">
 					<p class="disp_head">Destination</p>
-					<select form ="checkform" id="destination" autofocus name="destination" class="form-control" id="exampleFormControlSelect1">
+					<select form ="checkform" id="destination" name="destination" class="form-control" id="exampleFormControlSelect1">
 					<option>Tezu</option>
 					<option>Paruwa</option>
 					<option>Mission</option>
@@ -79,14 +83,17 @@
  </div>
 	  <br>
 	  
-	  <footer><a href="https://gitlab.com/rahul_799/plagarism-checker" target="_blank"><img src="https://about.gitlab.com/images/press/logo/svg/gitlab-logo-gray-rgb.svg" ></a>
-		<p>Visit the <a href="https://gitlab.com/rahul_799/plagarism-checker" target="_blank">Repo</a></p>
+	  <footer><a href="https://github.com/adiXcodr/SafeMaps" target="_blank"><img src="{{ url_for('static', filename='img/github.png') }}"></a>
+		<p>Check <a href="https://github.com/adiXcodr/SafeMaps" target="_blank">Documentation</a></p>
 	  </footer>
 
 
 
 	  <script>
+
 	   function ganttEach() {
+			var scr_width=$( window ).width();
+			$("#ini_graph").css("width",scr_width/1.5 );
 			var result=$("#result_content").text();
 			if(result!='')
 				if(result=='You are in the destination')

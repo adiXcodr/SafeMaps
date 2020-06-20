@@ -22,7 +22,7 @@ hgroup {
 }
 #ini_graph{
 	margin:0 auto !important;
-	width:1000px !important;
+	/*width:1000px !important;*/
 	height:auto;
 }
 h1, h3 { font-weight: 300; }
@@ -267,4 +267,16 @@ footer img:focus , footer a:focus { outline: none; }
 	color: #4a89dc !important;
 	font-weight: 800 !important;
 	font-family: 'Quicksand', sans-serif;
+}
+
+.format_docs{
+	color: #4a89dc !important;
+	font-weight: 1000 !important;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.main_header{
+	font-weight: bold !important;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 2rem;
 }
