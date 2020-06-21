@@ -216,18 +216,25 @@ def edgeList(path):
         
         
 def getDifference(test_list):
-    res = [abs(test_list[i + 1] - test_list[i]) for i in range(len(test_list)-1)] 
-    return(res)
+    a=min(test_list)
+    test_list.remove(a)
+    b=min(test_list)
+    return(abs(a-b))
 
 def getOptimalSolution(DPA_paths,TIL_paths,CRL_paths,DIS_paths):
-    if(max(getDifference(DPA_paths))<=5):
+    print('DPA',DPA_paths)
+    print('TIL',TIL_paths)
+    print('CRL',CRL_paths)
+    print('DIS',DIS_paths)
+    if(getDifference(DPA_paths)<=5):
       if(getDayNight()=="Day"):
-        if(max(getDifference(TIL_paths))<=2):
+        flag=getDifference(TIL_paths)<=2
+        if(flag):
             return(DIS_paths.index(min(DIS_paths)),'DIS')
         else:
             return(TIL_paths.index(min(TIL_paths)),'TIL')
       else:  #Night
-        if(max(getDifference(CRL_paths))<=1):
+        if(getDifference(CRL_paths)<=1):
             return(DIS_paths.index(min(DIS_paths)),'DIS')
         else:
             return(CRL_paths.index(min(CRL_paths)),'CRL')
