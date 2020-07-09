@@ -215,10 +215,11 @@ def edgeList(path):
     return(edges)
         
         
-def getDifference(test_list):
-    a=min(test_list)
-    test_list.remove(a)
-    b=min(test_list)
+def getDifference(attr):
+    test_list=attr[:]
+    test_list.sort(reverse=True)
+    a=test_list[0]
+    b=test_list[1]
     return(abs(a-b))
 
 def getOptimalSolution(DPA_paths,TIL_paths,CRL_paths,DIS_paths):
@@ -239,6 +240,7 @@ def getOptimalSolution(DPA_paths,TIL_paths,CRL_paths,DIS_paths):
         else:
             return(CRL_paths.index(min(CRL_paths)),'CRL')
     else:  #Return DPA if DIfference>5
+      print(DPA_paths)
       return(DPA_paths.index(min(DPA_paths)),'DPA')
 
 
