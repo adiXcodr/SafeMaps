@@ -240,7 +240,7 @@ def getDifference(attr):
     #test_list.sort(reverse=True)
     n=len(test_list)
     quickSort(test_list,0,n-1) 
-    test_list.reverse()
+    #test_list.reverse()
     a=test_list[0]
     b=test_list[1]
     return(abs(a-b))
