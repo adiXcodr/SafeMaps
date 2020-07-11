@@ -27,6 +27,26 @@ def all_path(src,dest,adj):
     getallpath(src, dest, visited, adj, path, final_path)
     return final_path
 
+def partition(arr,low,high): 
+    i = ( low-1 )         # index of smaller element 
+    pivot = arr[high]     # pivot 
+  
+    for j in range(low , high): 
+        if (arr[j] <= pivot): 
+            i = i+1 
+            arr[i],arr[j] = arr[j],arr[i] 
+  
+    arr[i+1],arr[high] = arr[high],arr[i+1] 
+    return ( i+1 ) 
+  
+
+def quickSort(arr,low,high): 
+    if (low < high): 
+        pi = partition(arr,low,high) 
+        quickSort(arr, low, pi-1) 
+        quickSort(arr, pi+1, high)
+
+
 def nodeToLocality(nodes):
     localities=dict()
     for x in nodes:
@@ -217,7 +237,10 @@ def edgeList(path):
         
 def getDifference(attr):
     test_list=attr[:]
-    test_list.sort(reverse=True)
+    #test_list.sort(reverse=True)
+    n=len(test_list)
+    quickSort(test_list,0,n-1) 
+    test_list.reverse()
     a=test_list[0]
     b=test_list[1]
     return(abs(a-b))

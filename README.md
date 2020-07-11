@@ -39,26 +39,17 @@ We will use some parameters as follows:
 
 ### Plan
 
-1. Create a network of places in a city and make a connected graph of
-say ‘n’ predefined places.
-2. Assign the number of people and number of people infected to
-each edge.
-3. Assign TIL, CRL and DIS to each edge randomly
-4. Assign the Distance to each edge randomly
-5. We make an interface between the user and the computer using a
-suitable UI platform. The user will select the source and destination
-from the given places.
-6. Find all possible paths between the two nodes and find the paths
-for which the sum of DPA is less.
-7. If there are multiple paths for which the difference in DPA is
-negligible, then look for the time in system clock.
-8. If it’s night time, then look for the paths in which crime less and if
-it’s daytime then look for the paths in which TIL is less.
+1. Create a network of places in a city and make a connected graph of say ‘n’ predefined places.
+2. Assign the number of people and number of people infected to each edge.
+3. Assign TIL, CRL and DIS to each edge randomly.
+4. Assign the Distance to each edge randomly.
+5. We make an interface between the user and the computer using a suitable UI platform. The user will select the source and destination from the given places.
+6. Find all possible paths between the two nodes and find the paths for which the sum of DPA is less.
+7. If there are multiple paths for which the difference in DPA is negligible (<=5), then look for the time in system clock.
+8. If it’s Night time, then look for the paths in which crime less and if it’s daytime then look for the paths in which TIL is less.
 9. Till now we might have achieved a single path or few paths in
-which the difference between DPA and the difference between TIL
-or the difference between CRL is negligible.
-10. Among the paths obtained, find the path with minimum distance
-(DIS)
+which the difference between DPA and the difference between TIL (<=2) or the difference between CRL (<=1) is negligible.
+10. Among the paths obtained, find the path with minimum distance (DIS)
 11. The path obtained will be our output.
 
 ### Author
