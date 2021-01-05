@@ -118,7 +118,7 @@ def getLocalityList(G,nodes):
     
 def getDayNight():
     date=datetime.now(pytz.timezone('Asia/Kolkata'))
-    if date.hour < 6 or date.hour > 18:
+    if date.hour < 6 or date.hour > 20:
         return('Night')
     else:
         return('Day')
@@ -214,17 +214,6 @@ def displayFinalGraph(G,path):
     f.savefig("static/img/Path.png",dpi=300)
     
     
-    
-    
-def getAttributeValue(att,u,v):
-    try:
-      val=att[(u,v)]
-    except KeyError:
-      try:
-        val=att[(v,u)]
-      except KeyError:
-        val=0
-    return(val)
 
 def edgeList(path):
     edges=[]
@@ -237,19 +226,14 @@ def edgeList(path):
         
 def getDifference(attr):
     test_list=attr[:]
-    #test_list.sort(reverse=True)
     n=len(test_list)
     quickSort(test_list,0,n-1) 
-    #test_list.reverse()
     a=test_list[0]
     b=test_list[1]
     return(abs(a-b))
 
 def getOptimalSolution(DPA_paths,TIL_paths,CRL_paths,DIS_paths):
-    print('DPA',DPA_paths)
-    print('TIL',TIL_paths)
-    print('CRL',CRL_paths)
-    print('DIS',DIS_paths)
+
     if(getDifference(DPA_paths)<=5):
       if(getDayNight()=="Day"):
         flag=getDifference(TIL_paths)<=2
@@ -266,8 +250,16 @@ def getOptimalSolution(DPA_paths,TIL_paths,CRL_paths,DIS_paths):
       print(DPA_paths)
       return(DPA_paths.index(min(DPA_paths)),'DPA')
 
-
-
+    
+def getAttributeValue(att,u,v):
+    try:
+      val=att[(u,v)]
+    except KeyError:
+      try:
+        val=att[(v,u)]
+      except KeyError:
+        val=0
+    return(val)
 
 def safestPath(G,all_paths):
     DPA=nx.get_edge_attributes(G,'DPA')
